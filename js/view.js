@@ -2,6 +2,7 @@ import AddTodo from "./components/addTodo.js";
 
 export default class View {
   constructor() {
+    this.btn = document.getElementById('add');
     this.title = document.getElementById('title');
     this.description = document.getElementById('description');
 
@@ -55,11 +56,12 @@ export default class View {
     editBtn.onclick = () => this.editTodo(todo.title, todo.description);
     row.children[3].appendChild(editBtn);
 
-    const updateBtn = document.createElement('button');
-    updateBtn.classList.add('btn', 'btn-success', 'mb-1', 'ml-1');
-    updateBtn.innerHTML = ` <i class="fa fa-check"></i>`;
-    updateBtn.onclick = () => this.updateTodo(todo.id);
-    row.children[3].appendChild(updateBtn);
+    // const updateBtn = document.createElement('button');
+    // updateBtn.classList.add('btn', 'btn-success', 'mb-1', 'ml-1');
+    // updateBtn.innerHTML = ` <i class="fa fa-check"></i>`;
+    // editBtn.onclick = () => this.editTodo(todo.title, todo.description);
+    // updateBtn.onclick = () => this.updateTodo(todo.id);
+    // row.children[3].appendChild(updateBtn);
   }
 
 
@@ -76,12 +78,13 @@ export default class View {
     console.log(title)
     console.log(description)
 
+    this.btn.textContent = 'UPDATE'
     this.title.value = title;
     this.description.value = description;
   }
 
-  updateTodo(id) {
-    this.model.updateTodo(id);
-    document.getElementById(id).update();
-  }
+  // updateTodo(id) {
+  //   this.model.updateTodo(id);
+  //   document.getElementById(id).update();
+  // }
 } 
