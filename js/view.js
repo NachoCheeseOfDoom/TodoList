@@ -52,7 +52,7 @@ export default class View {
     const editBtn = document.createElement('button');
     editBtn.classList.add('btn', 'btn-warning', 'mb-1', 'ml-1');
     editBtn.innerHTML = ` <i class="fa fa-edit"></i>`;
-    editBtn.onclick = () => this.editTodo(todo.id);
+    editBtn.onclick = () => this.editTodo(todo.title, todo.description);
     row.children[3].appendChild(editBtn);
 
     const updateBtn = document.createElement('button');
@@ -61,8 +61,6 @@ export default class View {
     updateBtn.onclick = () => this.updateTodo(todo.id);
     row.children[3].appendChild(updateBtn);
   }
-
-
 
 
   toggleCompleted(id) {
@@ -74,8 +72,12 @@ export default class View {
     document.getElementById(id).remove();
   }
 
-  editTodo(id) {
-    this.title.value = 'hola';
+  editTodo(title, description) {
+    console.log(title)
+    console.log(description)
+
+    this.title.value = title;
+    this.description.value = description;
   }
 
   updateTodo(id) {
