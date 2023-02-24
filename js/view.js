@@ -1,18 +1,23 @@
 import AddTodo from "./components/addTodo.js";
+import Model from "./model.js";
 
 export default class View {
   constructor() {
     this.btn = document.getElementById('add');
     this.title = document.getElementById('title');
     this.description = document.getElementById('description');
+    this.edit = document.getElementById('edit');
 
     this.model = null;
     this.table = document.getElementById('table');
 
     this.addTodoForm = new AddTodo();
+    this.model = new Model();
 
     this.addTodoForm.onClick((title, description) => this.addTodo(title, description));
+
   }
+
 
   setModel(model) {
     this.model = model;
@@ -53,14 +58,13 @@ export default class View {
     const editBtn = document.createElement('button');
     editBtn.classList.add('btn', 'btn-warning', 'mb-1', 'ml-1');
     editBtn.innerHTML = ` <i class="fa fa-edit"></i>`;
-    editBtn.onclick = () => this.editTodo(todo.title, todo.description);
+    editBtn.onclick = () => this.editTodo(todo.id, todo.title, todo.description);
     row.children[3].appendChild(editBtn);
 
     // const updateBtn = document.createElement('button');
     // updateBtn.classList.add('btn', 'btn-success', 'mb-1', 'ml-1');
     // updateBtn.innerHTML = ` <i class="fa fa-check"></i>`;
-    // editBtn.onclick = () => this.editTodo(todo.title, todo.description);
-    // updateBtn.onclick = () => this.updateTodo(todo.id);
+    // updateBtn.onclick = () => this.updateTodo(todo.id, todo.title, todo.description);
     // row.children[3].appendChild(updateBtn);
   }
 
@@ -74,17 +78,12 @@ export default class View {
     document.getElementById(id).remove();
   }
 
-  editTodo(title, description) {
-    console.log(title)
-    console.log(description)
-
-    this.btn.textContent = 'UPDATE'
-    this.title.value = title;
-    this.description.value = description;
+  editTodo(id, title, description) {
+    this.model.editTodo(id, title, description);
   }
 
-  // updateTodo(id) {
-  //   this.model.updateTodo(id);
-  //   document.getElementById(id).update();
+  // updateTodo(id, title, description) {
+  //   this.model.updateTodo(id, title, description);
   // }
+
 } 

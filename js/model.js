@@ -29,6 +29,7 @@ export default class Model {
       description,
       completed: false
     }
+    console.log(todo)
 
     this.todos.push(todo);
     this.save();
@@ -43,11 +44,25 @@ export default class Model {
 
 
   // !==================================================================
-  updateTodo(id) {
-    const index = this.findTodo(id);
-    // this.todos.splice(index, 1);
-    this.update();
+  editTodo(id, title, description) {
+    console.log(id, title, description)
+    this.view.title.value = title;
+    this.view.description.value = description;
+    this.view.btn.textContent = 'UPDATE'
+
+    // this.currentId.value = id;
+    // id = this.currentId.value;
+    this.currentId = 0;
+    console.log(this.currentId)
+    // console.log('new id: ' + id = this.currentId.value)
   }
+
+  // updateTodo(id, title, description) {
+  //   console.log(id, title, description)
+  //   this.view.title.value = title;
+  //   this.view.description.value = description;
+  //   this.view.btn.textContent = 'UPDATE'
+  // }
   // !==================================================================
 
 
