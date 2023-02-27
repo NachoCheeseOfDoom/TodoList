@@ -19,12 +19,10 @@ export default class AddTodo {
       if (this.title.value === '' || this.description.value === '') {
         this.alert.show('Title and description are required')
       }
-      else if (this.model.currentId.value > 6) {
-        console.log('Editado')
-        console.log(this.title.value)
-        console.log(this.description.value)
-        console.log('=================================================')
-        // this.model.currentId = 0;
+      else if (this.btn.textContent === 'UPDATE') {
+        console.log('Title: ' + this.title.value)
+        console.log('Description: ' + this.description.value)
+        console.log('=================================')
         this.btn.textContent = 'Add'
       }
       else {
@@ -32,6 +30,7 @@ export default class AddTodo {
         callback(this.title.value, this.description.value);
 
         console.log('No editado')
+        this.title.focus();
         this.title.value = '';
         this.description.value = '';
       }

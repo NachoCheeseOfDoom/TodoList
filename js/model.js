@@ -52,8 +52,7 @@ export default class Model {
 
     // this.currentId.value = id;
     // id = this.currentId.value;
-    this.currentId = 0;
-    console.log(this.currentId)
+    // this.currentId = 0;
     // console.log('new id: ' + id = this.currentId.value)
   }
 
