@@ -28,10 +28,6 @@ export default class View {
     todos.forEach((todo) => this.createRow(todo));
   }
 
-  // addTodo(title, description) {
-  //   const todo = this.model.addTodo(title, description);
-  //   this.createRow(todo);
-  // }
   editRow(id, title, description) {
     const row = document.getElementById(id);
     row.children[0].innerText = title;
@@ -57,6 +53,7 @@ export default class View {
       <td>${todo.description}</td>
       <td class="text-center"></td>
       <td class="text-right"></td>
+      <td class="text-left"></td>
     `;
 
     const checkbox = document.createElement('input');
@@ -75,13 +72,7 @@ export default class View {
     editBtn.classList.add('btn', 'btn-warning', 'mb-1', 'ml-1');
     editBtn.innerHTML = ` <i class="fa fa-edit"></i>`;
     editBtn.onclick = () => this.editTodo(todo.id, todo.title, todo.description);
-    row.children[3].appendChild(editBtn);
-
-    // const updateBtn = document.createElement('button');
-    // updateBtn.classList.add('btn', 'btn-success', 'mb-1', 'ml-1');
-    // updateBtn.innerHTML = ` <i class="fa fa-check"></i>`;
-    // updateBtn.onclick = () => this.updateTodo(todo.id, todo.title, todo.description);
-    // row.children[3].appendChild(updateBtn);
+    row.children[4].appendChild(editBtn);
   }
 
 
@@ -96,12 +87,6 @@ export default class View {
 
   editTodo(id, title, description) {
     this.addTodoForm.prepareUpdate(id, title, description);
-    // this.title.
-    // this.model.editTodo(id, title, description);
   }
-
-  // updateTodo(id, title, description) {
-  //   this.model.updateTodo(id, title, description);
-  // }
 
 } 
