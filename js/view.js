@@ -14,7 +14,7 @@ export default class View {
     this.addTodoForm = new AddTodo();
     this.model = new Model();
 
-    this.addTodoForm.onClick((title, description) => this.addTodo(title, description));
+    this.addTodoForm.onClick((id, title, description) => this.upsertTodo(id, title, description));
 
   }
 
@@ -28,9 +28,25 @@ export default class View {
     todos.forEach((todo) => this.createRow(todo));
   }
 
-  addTodo(title, description) {
-    const todo = this.model.addTodo(title, description);
-    this.createRow(todo);
+  // addTodo(title, description) {
+  //   const todo = this.model.addTodo(title, description);
+  //   this.createRow(todo);
+  // }
+  editRow(id, title, description) {
+    const row = document.getElementById(id);
+    row.children[0].innerText = title;
+    row.children[1].innerText = description;
+  }
+
+  upsertTodo(id, title, description) {
+    if (id) {
+      this.model.editTodo(id, title, description);
+      this.editRow(id, title, description);
+    } else {
+      const todo = this.model.addTodo(title, description);
+      this.createRow(todo);
+    }
+
   }
 
   createRow(todo) {
@@ -79,7 +95,9 @@ export default class View {
   }
 
   editTodo(id, title, description) {
-    this.model.editTodo(id, title, description);
+    this.addTodoForm.prepareUpdate(id, title, description);
+    // this.title.
+    // this.model.editTodo(id, title, description);
   }
 
   // updateTodo(id, title, description) {

@@ -37,6 +37,9 @@ export default class Model {
   }
 
   removeTodo(id) {
+    if (this.view.btn.textContent === 'UPDATE') {
+      console.log('hello')
+    }
     const index = this.findTodo(id);
     this.todos.splice(index, 1);
     this.save();
@@ -45,10 +48,14 @@ export default class Model {
 
   // !==================================================================
   editTodo(id, title, description) {
-    console.log(id, title, description)
-    this.view.title.value = title;
-    this.view.description.value = description;
-    this.view.btn.textContent = 'UPDATE'
+    console.log('New: ' + id, title, description)
+    const index = this.findTodo(id);
+    this.todos[index].title = title;
+    this.todos[index].description = description;
+    this.save();
+    // this.view.title.value = title;
+    // this.view.description.value = description;
+    // this.view.btn.textContent = 'UPDATE'
 
     // this.currentId.value = id;
     // id = this.currentId.value;
@@ -76,7 +83,7 @@ export default class Model {
     localStorage.setItem('todos', JSON.stringify(this.todos));
   }
 
-  update() {
-    localStorage.setItem('todos', JSON.stringify(this.todos));
-  }
+  // update() {
+  //   localStorage.setItem('todos', JSON.stringify(this.todos));
+  // }
 }
